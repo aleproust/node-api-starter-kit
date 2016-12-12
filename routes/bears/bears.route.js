@@ -3,7 +3,7 @@ let express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
   Bear = require('../../models/Bear/bear').Bear;
-
+  mongoose.Promise = Promise;
   api = {
     getBears : getBears,
     postBears: postBears,
@@ -14,12 +14,13 @@ let express = require('express'),
 
 // GET Bears
 function getBears(req, res) {
-  let application = req.params.name;
+  let name = req.params.name;
 
   Bear.findOne({
     'name': name,
   })
-  .then(bear =>  res.status(200).json(bear.data))
+  .then(bear =>  {
+    res.status(200).json(bear)})
   .catch(err => res.status(404).json(err))
 
 }
