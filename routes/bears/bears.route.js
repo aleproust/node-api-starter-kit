@@ -40,7 +40,7 @@ function postBears(req, res) {
 // Put bears
 function putBears(req, res) {
   var name = req.params.name;
-  Configuration.findOneAndUpdate({
+  Bear.findOneAndUpdate({
     "name": name
   },
     {
